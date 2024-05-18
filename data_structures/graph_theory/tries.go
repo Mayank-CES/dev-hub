@@ -55,15 +55,15 @@ func (t *Trie) Search(w string) bool {
 
 func main() {
 	myTrie := NewTrie()
-	toAdd := []string{	
-		"mayank",		
-		"data",		
-		"structure",		
-		"lemon",		
-		"lemonade"	
-	}	
-	for _, str := range toAdd{
-		myTrie.Insert(str)	
+	toAdd := []string{
+		"mayank",
+		"data",
+		"structure",
+		"lemon",
+		"lemonade",
+	}
+	for _, str := range toAdd {
+		myTrie.Insert(str)
 	}
 	fmt.Println("Search: ", myTrie.Search("mayank"))
 }
