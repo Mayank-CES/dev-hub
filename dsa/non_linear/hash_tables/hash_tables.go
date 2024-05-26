@@ -29,31 +29,53 @@ func (h *HashTable) Insert(key string) {
 
 // Search will take in a key and return true if that key is stored in the hash table
 func (h *HashTable) Search(key string) bool {
-	// index := hash(key)
-	return false
+	index := hash(key)
+	return h.array[index].search(key)
 }
 
 // Delete will take in a key and delete it from the hash table
 func (h *HashTable) Delete(key string) {
-	// index := hash(key)
-
+	index := hash(key)
+	h.array[index].delete(key)
 }
 
 // insert will take in a create a node with the same key and insert the node in the bucket
 func (b *bucket) insert(k string) {
-	node := &bucketNode{key: k}
-	node.next = b.head
-	b.head = node
+	if !b.search(k) {
+		node := &bucketNode{key: k}
+		node.next = b.head
+		b.head = node
+	} else {
+		fmt.Println("already exists")
+	}
 }
 
 // search
 func (b *bucket) search(k string) bool {
+	currentNode := b.head
+	for currentNode != nil {
+		if currentNode.key == k {
+			return true
+		}
+		currentNode = currentNode.next
+	}
 	return false
 }
 
-// delete
+// delete will take a key and delete the node
 func (b *bucket) delete(k string) {
-
+	if b.head.key == k {
+		b.head = b.head.next
+		return
+	}
+	previousNode := b.head
+	for previousNode.next != nil {
+		if previousNode.next.key == k {
+			// delete
+			previousNode.next = previousNode.next.next
+		}
+		previousNode = previousNode.next
+	}
 }
 
 // hash
@@ -75,11 +97,33 @@ func New() *HashTable {
 }
 
 func main() {
+	bucket := &bucket{}
+	bucket.insert("MAYANK")
+	bucket.insert("MAYANK")              // Output: already exists
+	fmt.Println(bucket.search("MAYANK")) // Output: true
+	fmt.Println(bucket.search("SAKETH")) // Output: false
+
+	bucket.delete("MAYANK")
+	fmt.Println(bucket.search("MAYANK")) // Output: false
+
 	hashTable := &HashTable{}
 	fmt.Println(hashTable) // Output: &{[<nil> <nil> <nil> <nil> <nil> <nil> <nil>]}
-
 	hashTable = New()
-	fmt.Println(hashTable)     // Output: &{[0xc00004a020 0xc00004a028 0xc00004a030 0xc00004a038 0xc00004a040 0xc00004a048 0xc00004a050]}
-	fmt.Println(hash("RANDY")) // Output: 4
+	fmt.Println(hashTable)      // Output: &{[0xc00004a020 0xc00004a028 0xc00004a030 0xc00004a038 0xc00004a040 0xc00004a048 0xc00004a050]}
+	fmt.Println(hash("MAYANK")) // Output: 1
+	list := []string{
+		"MAYANK",
+		"UNNAT",
+		"PULKIT",
+		"UTKARSH",
+		"SAKETH",
+	}
 
+	for _, v := range list {
+		hashTable.Insert(v)
+	}
+
+	hashTable.Delete("MAYANK")
+	fmt.Println(hashTable.Search("MAYANK")) // Output: false
+	fmt.Println(hashTable.Search("SAKETH")) // Output: true
 }
