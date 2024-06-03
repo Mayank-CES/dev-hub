@@ -1,7 +1,23 @@
-# Builder
+# Builder Pattern
 Builder is a creational design pattern, which allows constructing complex objects step by step.
+The pattern allows us to produce different types and representations of an object using the same construction code. Unlike other creational patterns, Builder doesn’t require products to have a common interface. That makes it possible to produce different products using the same construction process.
 
-Unlike other creational patterns, Builder doesn’t require products to have a common interface. That makes it possible to produce different products using the same construction process.
+## Problem
+Imagine a complex object that requires laborious, step-by-step initialization of many fields and nested objects. Such initialization code is usually buried inside a monstrous constructor with lots of parameters. Or even worse: scattered all over the client code.
+
+
+## Solution
+The Builder pattern suggests that you extract the object construction code out of its own class and move it to separate objects called builders.
+
+### Director
+You can go further and extract a series of calls to the builder steps you use to construct a product into a separate class called director. The director class defines the order in which to execute the building steps, while the builder provides the implementation for those steps.
+
+
+## Example 
+
+The Builder pattern is used when the desired product is complex and requires multiple steps to complete. In this case, several construction methods would be simpler than a single monstrous constructor. The potential problem with the multistage building process is that a partially built and unstable product may be exposed to the client. The Builder pattern keeps the product private until it’s fully built.
+
+In the below code, we see different types of houses (igloo and normalHouse) being constructed by iglooBuilder and normalBuilder. Each house type has the same construction steps. The optional director struct helps to organize the building process.
 
 ## Conceptual Example
 The Builder pattern is used when the desired product is complex and requires multiple steps to complete. In this case, several construction methods would be simpler than a single monstrous constructor. The potential problem with the multistage building process is that a partially built and unstable product may be exposed to the client. The Builder pattern keeps the product private until it’s fully built.
