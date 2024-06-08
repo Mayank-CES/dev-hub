@@ -2,6 +2,8 @@
 
 Factory Method is a creational design pattern that provides an interface for creating objects in a superclass, but allows subclasses to alter the type of objects that will be created.
 
+![image](https://github.com/Mayank-CES/dev-hub/assets/83012558/5f2a6474-b9a2-4887-8e19-63a3e1c7c715)
+
 ## Theory
 
 ### Problem
@@ -16,13 +18,23 @@ As a result, you will end up with pretty nasty code, riddled with conditionals t
 ### Solution
 The Factory Method pattern suggests that you replace direct object construction calls (using the new operator) with calls to a special factory method. Don’t worry: the objects are still created via the new operator, but it’s being called from within the factory method. Objects returned by a factory method are often referred to as products.
 
+<img width="635" alt="image" src="https://github.com/Mayank-CES/dev-hub/assets/83012558/05c3c45e-8751-4a6c-8b5d-a4ff8bd0a542">
+
 At first glance, this change may look pointless: we just moved the constructor call from one part of the program to another. However, consider this: now you can override the factory method in a subclass and change the class of products being created by the method.
 
 There’s a slight limitation though: subclasses may return different types of products only if these products have a common base class or interface. Also, the factory method in the base class should have its return type declared as this interface.
 
+<img width="511" alt="image" src="https://github.com/Mayank-CES/dev-hub/assets/83012558/f7091567-b1ee-46ef-b05e-015632bd87ab">
+
+
 For example, both Truck and Ship classes should implement the Transport interface, which declares a method called deliver. Each class implements this method differently: trucks deliver cargo by land, ships deliver cargo by sea. The factory method in the RoadLogistics class returns truck objects, whereas the factory method in the SeaLogistics class returns ships.
 
+<img width="661" alt="image" src="https://github.com/Mayank-CES/dev-hub/assets/83012558/57f94ce2-7f6f-474e-bc1a-8379753f63af">
+
+
 The code that uses the factory method (often called the client code) doesn’t see a difference between the actual products returned by various subclasses. The client treats all the products as abstract Transport. The client knows that all transport objects are supposed to have the deliver method, but exactly how it works isn’t important to the client.
+
+<img width="967" alt="image" src="https://github.com/Mayank-CES/dev-hub/assets/83012558/340abe06-85bb-43e4-a027-dc4261e4a342">
 
 ### Applicability
 * **Use the Factory Method when you don’t know beforehand the exact types and dependencies of the objects your code should work with.**
@@ -74,6 +86,9 @@ The code that uses the factory method (often called the client code) doesn’t s
     For instance, imagine that you have the following hierarchy of classes: the base Mail class with a couple of subclasses: AirMail and GroundMail; the Transport classes are Plane, Truck and Train. While the AirMail class only uses Plane objects, GroundMail may work with both Truck and Train objects. You can create a new subclass (say TrainMail) to handle both cases, but there’s another option. The client code can pass an argument to the factory method of the GroundMail class to control which product it wants to receive.
 
 6. If, after all of the extractions, the base factory method has become empty, you can make it abstract. If there’s something left, you can make it a default behavior of the method.
+
+<img width="639" alt="image" src="https://github.com/Mayank-CES/dev-hub/assets/83012558/809d8028-6ee8-4ac4-bb3f-9fa57b3f8508">
+
 
 ### Pros
 * You avoid tight coupling between the creator and the concrete products.
