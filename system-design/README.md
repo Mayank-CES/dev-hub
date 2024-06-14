@@ -85,7 +85,7 @@ Welcome to the System Design Section. This space is dedicated to the exploration
 
 ### 4. Distributed Systems
 
-#### 4.1. CAP Theorem
+#### 4.1. [CAP Theorem](https://github.com/Mayank-CES/dev-hub/blob/master/system-design/cap_theorem.md#cap-theorem)
    - Explanation and Implications
    - Trade-offs between Consistency, Availability, and Partition Tolerance
    - Examples of Systems in Each Category
