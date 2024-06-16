@@ -6,8 +6,8 @@ This is the [System Design Road Map](https://roadmap.sh/system-design)
 ### 1. Foundations of System Design
 
 #### 1.1. Basic Concepts and Terminology
-   - [System Architecture](https://github.com/Mayank-CES/dev-hub/blob/master/system-design/01_foundation/01_system_architecture.md#system-architecture)
-   - [Components and Interfaces](https://github.com/Mayank-CES/dev-hub/blob/master/system-design/01_foundation/02_component_interfaces.md/#components-and-interfaces)
+   - [System Architecture](https://github.com/Mayank-CES/dev-hub/blob/master/system-design/01_foundation/01_basic_concepts/01_system_architecture.md#system-architecture)
+   - [Components and Interfaces](https://github.com/Mayank-CES/dev-hub/blob/master/system-design/01_foundation/01_basic_concepts/02_component_interfaces.md/#components-and-interfaces)
    - System Boundaries
    - Latency vs. Throughput
    - Scalability and Elasticity
