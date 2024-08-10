@@ -1,6 +1,6 @@
 # System Design
 
-Welcome to the System Design Section. 
+Welcome to the System Design.
 This is the [System Design Road Map](https://roadmap.sh/system-design)
 
 ### 1. Foundations of System Design
